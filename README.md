@@ -3,7 +3,7 @@
 go-xray is a Go client library for accessing the [JFrog Xray API](https://www.jfrog.com/confluence/display/XRAY/Xray+REST+API).
 
 It is based on the excellent work on the [go-artifactory](https://github.com/atlassian/go-artifactory)
-library and attempts to follow a similar API.
+library (it even uses their awesome client library) and attempts to follow a similar API.
 
 ## Requirements
 
