@@ -54,7 +54,7 @@ type Summary struct {
 // Usage: client.V1.Summary.GetBuildSummary(ctx, buildName, buildNumber)
 func (s *SummaryService) GetBuildSummary(ctx context.Context, buildName string, buildNumber string) (*Summary, *http.Response, error) {
 	path := fmt.Sprintf("/api/v1/summary/build?build_name=%s&build_number=%s", buildName, buildNumber)
-	req, err := s.client.NewJSONEncodedRequest("GET", path, nil)
+	req, err := s.client.NewRequest("GET", path, nil)
 	if err != nil {
 		return nil, nil, err
 	}

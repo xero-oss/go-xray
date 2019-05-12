@@ -21,7 +21,7 @@ type GetSystemMonitoringStatusOutput struct {
 // Security:  Requires an admin user
 // Usage: client.V1.System.GetMonitoringStatus(ctx)
 func (s *SystemService) GetMonitoringStatus(ctx context.Context) (*GetSystemMonitoringStatusOutput, *http.Response, error) {
-	req, err := s.client.NewJSONEncodedRequest("GET", "/api/v1/monitor", nil)
+	req, err := s.client.NewRequest("GET", "/api/v1/monitor", nil)
 	if err != nil {
 		return nil, nil, err
 	}
@@ -41,7 +41,7 @@ type PingRequestOutput struct {
 // Security:  Requires a valid user
 // Usage: client.V1.System.Ping(ctx)
 func (s *SystemService) Ping(ctx context.Context) (*PingRequestOutput, *http.Response, error) {
-	req, err := s.client.NewJSONEncodedRequest("GET", "/api/v1/system/ping", nil)
+	req, err := s.client.NewRequest("GET", "/api/v1/system/ping", nil)
 	if err != nil {
 		return nil, nil, err
 	}
@@ -58,7 +58,7 @@ func (s *SystemService) Ping(ctx context.Context) (*PingRequestOutput, *http.Res
 // Security:  Requires a valid user
 // Usage: client.V1.System.ExternalPing(ctx)
 // func (s *SystemService) ExternalPing(ctx context.Context) (*PingRequestOutput, *http.Response, error) {
-// 	req, err := s.client.NewJSONEncodedRequest("GET", "/api/v1/system/external/ping", nil)
+// 	req, err := s.client.NewRequest("GET", "/api/v1/system/external/ping", nil)
 // 	if err != nil {
 // 		return nil, nil, err
 // 	}
@@ -79,7 +79,7 @@ type XrayVersion struct {
 // Security:  Requires a valid user
 // Usage: client.V1.System.Version(ctx)
 func (s *SystemService) Version(ctx context.Context) (*XrayVersion, *http.Response, error) {
-	req, err := s.client.NewJSONEncodedRequest("GET", "/api/v1/system/version", nil)
+	req, err := s.client.NewRequest("GET", "/api/v1/system/version", nil)
 	if err != nil {
 		return nil, nil, err
 	}

@@ -37,7 +37,7 @@ type BinaryManagerBuildIndexingConfiguration struct {
 // Security:  Requires a valid user
 // Usage: client.V1.BinaryManagers.ListBinaryManagers(ctx)
 func (s *BinaryManagersService) ListBinaryManagers(ctx context.Context) (*[]BinaryManager, *http.Response, error) {
-	req, err := s.client.NewJSONEncodedRequest("GET", "/api/v1/binMgr", nil)
+	req, err := s.client.NewRequest("GET", "/api/v1/binMgr", nil)
 	if err != nil {
 		return nil, nil, err
 	}
@@ -54,7 +54,7 @@ func (s *BinaryManagersService) ListBinaryManagers(ctx context.Context) (*[]Bina
 // Usage: client.V1.BinaryManagers.GetBinaryManager(ctx, "name")
 func (s *BinaryManagersService) GetBinaryManager(ctx context.Context, name string) (*BinaryManager, *http.Response, error) {
 	path := fmt.Sprintf("/api/v1/binMgr/%s", name)
-	req, err := s.client.NewJSONEncodedRequest("GET", path, nil)
+	req, err := s.client.NewRequest("GET", path, nil)
 	if err != nil {
 		return nil, nil, err
 	}
@@ -96,7 +96,7 @@ func (s *BinaryManagersService) UpdateBinaryManager(ctx context.Context, name st
 // Usage: client.V1.BinaryManagers.DeleteBinaryManager(ctx, "name")
 func (s *BinaryManagersService) DeleteBinaryManager(ctx context.Context, name string) (*http.Response, error) {
 	path := fmt.Sprintf("/api/v1/binMgr/%s", name)
-	req, err := s.client.NewJSONEncodedRequest("DELETE", path, nil)
+	req, err := s.client.NewRequest("DELETE", path, nil)
 	if err != nil {
 		return nil, err
 	}

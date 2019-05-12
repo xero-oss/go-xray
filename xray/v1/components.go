@@ -46,7 +46,7 @@ type Component struct {
 // Usage: client.V1.Components.GetComponent(ctx, "name")
 func (s *ComponentsService) GetComponent(ctx context.Context, name string) (*Component, *http.Response, error) {
 	path := fmt.Sprintf("/api/v1/component/%s", name)
-	req, err := s.client.NewJSONEncodedRequest("GET", path, nil)
+	req, err := s.client.NewRequest("GET", path, nil)
 	if err != nil {
 		return nil, nil, err
 	}

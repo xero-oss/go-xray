@@ -45,7 +45,7 @@ type Watch struct {
 // Security:  Requires a valid user with "View Watches" permission
 // Usage: client.V2.Watches.ListWatches(ctx)
 func (s *WatchesService) ListWatches(ctx context.Context) (*[]Watch, *http.Response, error) {
-	req, err := s.client.NewJSONEncodedRequest("GET", "/api/v2/watches", nil)
+	req, err := s.client.NewRequest("GET", "/api/v2/watches", nil)
 	if err != nil {
 		return nil, nil, err
 	}
@@ -62,7 +62,7 @@ func (s *WatchesService) ListWatches(ctx context.Context) (*[]Watch, *http.Respo
 // Usage: client.V2.Watches.GetWatch(ctx, "name")
 func (s *WatchesService) GetWatch(ctx context.Context, name string) (*Watch, *http.Response, error) {
 	path := fmt.Sprintf("/api/v2/watches/%s", name)
-	req, err := s.client.NewJSONEncodedRequest("GET", path, nil)
+	req, err := s.client.NewRequest("GET", path, nil)
 	if err != nil {
 		return nil, nil, err
 	}
@@ -104,7 +104,7 @@ func (s *WatchesService) UpdateWatch(ctx context.Context, name string, watch *Wa
 // Usage: client.V2.Watches.DeleteWatch(ctx, "name")
 func (s *WatchesService) DeleteWatch(ctx context.Context, name string) (*http.Response, error) {
 	path := fmt.Sprintf("/api/v2/watches/%s", name)
-	req, err := s.client.NewJSONEncodedRequest("DELETE", path, nil)
+	req, err := s.client.NewRequest("DELETE", path, nil)
 	if err != nil {
 		return nil, err
 	}

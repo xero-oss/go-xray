@@ -58,7 +58,7 @@ type Policy struct {
 // Security:  Requires a user with "View Watches" permission
 // Usage: client.V1.Policies.ListPolicies(ctx)
 func (s *PoliciesService) ListPolicies(ctx context.Context) (*[]Policy, *http.Response, error) {
-	req, err := s.client.NewJSONEncodedRequest("GET", "/api/v1/policies", nil)
+	req, err := s.client.NewRequest("GET", "/api/v1/policies", nil)
 	if err != nil {
 		return nil, nil, err
 	}
@@ -75,7 +75,7 @@ func (s *PoliciesService) ListPolicies(ctx context.Context) (*[]Policy, *http.Re
 // Usage: client.V1.Policies.GetPolicy(ctx, "name")
 func (s *PoliciesService) GetPolicy(ctx context.Context, name string) (*Policy, *http.Response, error) {
 	path := fmt.Sprintf("/api/v1/policies/%s", name)
-	req, err := s.client.NewJSONEncodedRequest("GET", path, nil)
+	req, err := s.client.NewRequest("GET", path, nil)
 	if err != nil {
 		return nil, nil, err
 	}
@@ -117,7 +117,7 @@ func (s *PoliciesService) UpdatePolicy(ctx context.Context, name string, policy 
 // Usage: client.V1.Policies.DeletePolicy(ctx, "name")
 func (s *PoliciesService) DeletePolicy(ctx context.Context, name string) (*http.Response, error) {
 	path := fmt.Sprintf("/api/v1/policies/%s", name)
-	req, err := s.client.NewJSONEncodedRequest("DELETE", path, nil)
+	req, err := s.client.NewRequest("DELETE", path, nil)
 	if err != nil {
 		return nil, err
 	}

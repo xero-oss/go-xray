@@ -41,7 +41,7 @@ type Permission struct {
 // Security:  Requires an admin user
 // Usage: client.V1.Permissions.ListPermissions(ctx)
 func (s *PermissionsService) ListPermissions(ctx context.Context) (*[]PermissionReference, *http.Response, error) {
-	req, err := s.client.NewJSONEncodedRequest("GET", "/api/v1/permissions", nil)
+	req, err := s.client.NewRequest("GET", "/api/v1/permissions", nil)
 	if err != nil {
 		return nil, nil, err
 	}
@@ -58,7 +58,7 @@ func (s *PermissionsService) ListPermissions(ctx context.Context) (*[]Permission
 // Usage: client.V1.Permissions.GetPermission(ctx, "name")
 func (s *PermissionsService) GetPermission(ctx context.Context, name string) (*Permission, *http.Response, error) {
 	path := fmt.Sprintf("/api/v1/permissions/%s", name)
-	req, err := s.client.NewJSONEncodedRequest("GET", path, nil)
+	req, err := s.client.NewRequest("GET", path, nil)
 	if err != nil {
 		return nil, nil, err
 	}
@@ -107,7 +107,7 @@ func (s *PermissionsService) UpdatePermission(ctx context.Context, name string, 
 // Usage: client.V1.Permissions.DeletePermission(ctx, "name")
 func (s *PermissionsService) DeletePermission(ctx context.Context, name string) (*http.Response, error) {
 	path := fmt.Sprintf("/api/v1/permissions/%s", name)
-	req, err := s.client.NewJSONEncodedRequest("DELETE", path, nil)
+	req, err := s.client.NewRequest("DELETE", path, nil)
 	if err != nil {
 		return nil, err
 	}

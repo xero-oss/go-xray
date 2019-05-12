@@ -22,7 +22,7 @@ type Integration struct {
 // Security:  Requires an admin user
 // Usage: client.V1.Integrations.ListIntegrations(ctx)
 func (s *IntegrationsService) ListIntegrations(ctx context.Context) (*[]Integration, *http.Response, error) {
-	req, err := s.client.NewJSONEncodedRequest("GET", "/api/v1/integration", nil)
+	req, err := s.client.NewRequest("GET", "/api/v1/integration", nil)
 	if err != nil {
 		return nil, nil, err
 	}
@@ -64,7 +64,7 @@ func (s *IntegrationsService) UpdateIntegration(ctx context.Context, name string
 // Usage: client.V1.Integrations.DeleteIntegration(ctx, "name")
 func (s *IntegrationsService) DeleteIntegration(ctx context.Context, name string) (*http.Response, error) {
 	path := fmt.Sprintf("/api/v1/integration/%s", name)
-	req, err := s.client.NewJSONEncodedRequest("DELETE", path, nil)
+	req, err := s.client.NewRequest("DELETE", path, nil)
 	if err != nil {
 		return nil, err
 	}

@@ -23,7 +23,7 @@ type SystemParameters struct {
 // Security:  Requires an admin user
 // Usage: client.V1.Configuration.GetSystemParameters(ctx)
 func (s *ConfigurationService) GetSystemParameters(ctx context.Context) (*SystemParameters, *http.Response, error) {
-	req, err := s.client.NewJSONEncodedRequest("GET", "/api/v1/configuration/systemParameters", nil)
+	req, err := s.client.NewRequest("GET", "/api/v1/configuration/systemParameters", nil)
 	if err != nil {
 		return nil, nil, err
 	}

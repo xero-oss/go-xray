@@ -42,7 +42,7 @@ type LicenseReport struct {
 // Security:  Requires a valid user with "Generate Reports" permission
 // Usage: client.V1.Reports.GetLicenseReport(ctx)
 func (s *ReportsService) GetLicenseReport(ctx context.Context) (*LicenseReport, *http.Response, error) {
-	req, err := s.client.NewJSONEncodedRequest("GET", "/api/v1/licensesReport", nil)
+	req, err := s.client.NewRequest("GET", "/api/v1/licensesReport", nil)
 	if err != nil {
 		return nil, nil, err
 	}
@@ -111,7 +111,7 @@ func (s *ReportsService) GetLicenseReportComponents(ctx context.Context, getLice
 		return nil, nil, err
 	}
 	path := fmt.Sprintf("/api/v1/licensesReport/components?%s", query)
-	req, err := s.client.NewJSONEncodedRequest("GET", path, nil)
+	req, err := s.client.NewRequest("GET", path, nil)
 	if err != nil {
 		return nil, nil, err
 	}
@@ -162,7 +162,7 @@ type SecurityReport struct {
 // Security:  Requires a valid user with "Generate Reports" permission
 // Usage: client.V1.Reports.GetSecurityReport(ctx)
 func (s *ReportsService) GetSecurityReport(ctx context.Context) (*SecurityReport, *http.Response, error) {
-	req, err := s.client.NewJSONEncodedRequest("GET", "/api/v1/securityReport", nil)
+	req, err := s.client.NewRequest("GET", "/api/v1/securityReport", nil)
 	if err != nil {
 		return nil, nil, err
 	}
@@ -199,7 +199,7 @@ type TopVulnerabilityReport struct {
 // Security:  Requires a valid user with "Generate Reports" permission
 // Usage: client.V1.Reports.GetTopVulnerabilitiesSecurityReport(ctx)
 func (s *ReportsService) GetTopVulnerabilitiesSecurityReport(ctx context.Context) (*[]TopVulnerabilityReport, *http.Response, error) {
-	req, err := s.client.NewJSONEncodedRequest("GET", "/api/v1/securityReport/topVulnerabilities", nil)
+	req, err := s.client.NewRequest("GET", "/api/v1/securityReport/topVulnerabilities", nil)
 	if err != nil {
 		return nil, nil, err
 	}

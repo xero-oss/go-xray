@@ -20,7 +20,7 @@ type User struct {
 // Security:  Requires an admin user
 // Usage: client.V1.Users.ListUsers(ctx)
 func (s *UsersService) ListUsers(ctx context.Context) (*[]User, *http.Response, error) {
-	req, err := s.client.NewJSONEncodedRequest("GET", "/api/v1/users", nil)
+	req, err := s.client.NewRequest("GET", "/api/v1/users", nil)
 	if err != nil {
 		return nil, nil, err
 	}
@@ -37,7 +37,7 @@ func (s *UsersService) ListUsers(ctx context.Context) (*[]User, *http.Response, 
 // Usage: client.V1.Users.GetUser(ctx, "name")
 func (s *UsersService) GetUser(ctx context.Context, name string) (*User, *http.Response, error) {
 	path := fmt.Sprintf("/api/v1/users/%s", name)
-	req, err := s.client.NewJSONEncodedRequest("GET", path, nil)
+	req, err := s.client.NewRequest("GET", path, nil)
 	if err != nil {
 		return nil, nil, err
 	}
@@ -79,7 +79,7 @@ func (s *UsersService) UpdateUser(ctx context.Context, name string, user *User) 
 // Usage: client.V1.Users.DeleteUser(ctx, "name")
 func (s *UsersService) DeleteUser(ctx context.Context, name string) (*http.Response, error) {
 	path := fmt.Sprintf("/api/v1/users/%s", name)
-	req, err := s.client.NewJSONEncodedRequest("DELETE", path, nil)
+	req, err := s.client.NewRequest("DELETE", path, nil)
 	if err != nil {
 		return nil, err
 	}
