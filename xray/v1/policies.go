@@ -9,8 +9,8 @@ import (
 type PoliciesService Service
 
 type PolicyCVSSRange struct {
-	To   *string `json:"to,omitempty"`
-	From *string `json:"from,omitempty"`
+	To   *int `json:"to,omitempty"`
+	From *int `json:"from,omitempty"`
 }
 
 type PolicyRuleCriteria struct {
