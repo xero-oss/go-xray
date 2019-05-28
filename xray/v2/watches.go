@@ -2,6 +2,7 @@ package v2
 
 import (
 	"context"
+	"encoding/json"
 	"fmt"
 	"net/http"
 )
@@ -14,9 +15,20 @@ type WatchGeneralData struct {
 	Active      *bool   `json:"active,omitempty"`
 }
 
-type WatchFilter struct {
-	Type  *string `json:"type,omitempty"`
+type WatchFilterValue struct {
+	Key   *string `json:"key,omitempty"`
 	Value *string `json:"value,omitempty"`
+}
+
+// WatchFilterValueWrapper is a wrapper around WatchFilterValue which handles the API returning both a string and an object for the watch filter value
+type WatchFilterValueWrapper struct {
+	WatchFilterValue
+	IsPropertyFilter bool `json:”-”`
+}
+
+type WatchFilter struct {
+	Type  *string                  `json:"type,omitempty"`
+	Value *WatchFilterValueWrapper `json:"value,omitempty"`
 }
 
 type WatchProjectResource struct {
@@ -39,6 +51,42 @@ type Watch struct {
 	GeneralData      *WatchGeneralData      `json:"general_data,omitempty"`
 	ProjectResources *WatchProjectResources `json:"project_resources,omitempty"`
 	AssignedPolicies *[]WatchAssignedPolicy `json:"assigned_policies,omitempty"`
+}
+
+// UnmarshalJSON converts JSON data into a WatchFilterValueWrapper object
+// It returns any errors that occured during the function
+func (wf *WatchFilterValueWrapper) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		var v WatchFilterValue
+
+		if err := json.Unmarshal(data, &v); err != nil {
+			return err
+		}
+
+		wf.WatchFilterValue = v
+		wf.IsPropertyFilter = true
+
+		return nil
+	}
+
+	wf.Value = &v
+	wf.IsPropertyFilter = false
+
+	return nil
+}
+
+// MarshalJSON coverts the WatchFilterValueWrapper into JSON data
+// It returns the JSON data and any errors that occured during the function
+func (wf WatchFilterValueWrapper) MarshalJSON() ([]byte, error) {
+	if wf.IsPropertyFilter {
+		return json.Marshal(WatchFilterValue{
+			Key:   wf.Key,
+			Value: wf.Value,
+		})
+	}
+
+	return json.Marshal(&wf.Value)
 }
 
 // Description: Gets a list of all watches in the system
