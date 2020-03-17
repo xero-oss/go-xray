@@ -281,7 +281,7 @@ type ExportComponentDetailsInput struct {
 // Security:  Requires a valid user with "Read Components" permission
 // Usage: client.V1.Components.ExportComponentDetails(ctx, exportComponentDetailsInput, writer)
 func (s *ComponentsService) ExportComponentDetails(ctx context.Context, exportComponentDetailsInput *ExportComponentDetailsInput, writer io.Writer) (*http.Response, error) {
-	req, err := s.client.NewJSONEncodedRequest("POST", "/api/v1/dependencyGraph/artifactDelta", exportComponentDetailsInput)
+	req, err := s.client.NewJSONEncodedRequest("POST", "/api/v1/component/exportDetails", exportComponentDetailsInput)
 	if err != nil {
 		return nil, err
 	}
