@@ -33,6 +33,7 @@ type WatchFilter struct {
 
 type WatchProjectResource struct {
 	Type            *string        `json:"type,omitempty"`
+	RepoType        *string        `json:"repo_type,omitempty"`
 	BinaryManagerId *string        `json:"bin_mgr_id,omitempty"`
 	Name            *string        `json:"name,omitempty"`
 	Filters         *[]WatchFilter `json:"filters,omitempty"`
